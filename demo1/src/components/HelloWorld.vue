@@ -2,7 +2,7 @@
   <h1>{{ msg }}</h1>
 
   <p>
-    Recommended IDE setup:
+    h哈哈哈哈 IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
     +
     <a
@@ -35,19 +35,19 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import {ref, defineComponent} from 'vue'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
     msg: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup: () => {
     const count = ref(0)
-    return { count }
-  }
+    return {count}
+  },
 })
 </script>
 
