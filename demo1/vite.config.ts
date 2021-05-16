@@ -1,16 +1,36 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import styleImport from 'vite-plugin-style-import'
 // svg插件
 import { svgBuilder } from './src/plugins/svgBuilder';
 const resolve = (dir: string) => path.join(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    assetsDir: "./static",
+  },
   plugins: [
     vue(),
-    [svgBuilder('./src/assets/icons/svg/')]
+    [svgBuilder('./src/assets/icons/svg/')],
     // 这里已经将src/icons/svg/下的svg全部导入，无需再单独导入
+    styleImport({
+      libs: [
+        {
+          libraryName: 'element-plus',
+          esModule: true,
+          ensureStyleFile: true,
+          resolveStyle: name => {
+            name = name.slice(3)
+            return `element-plus/packages/theme-chalk/src/${name}.scss`
+          },
+          resolveComponent: name => {
+            return `element-plus/lib/${name}`
+          }
+        }
+      ]
+    })
   ],
   resolve: {
     alias: {
@@ -25,7 +45,7 @@ export default defineConfig({
   },
   server: {
     //服务器主机名
-    host: '',
+    host: 'http://localhost',
     //端口号
     port: 3088,
     //设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口

@@ -27,7 +27,6 @@
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
   </p>
 
-  <button @click="count++">count is: {{ count }}</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
@@ -43,10 +42,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-  },
-  setup: () => {
-    const count = ref(0)
-    return {count}
   },
 })
 </script>
